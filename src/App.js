@@ -1,16 +1,35 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+
+import TaskInput from './components/TaskInput';
+import TaskList from './components/TaskList';
+import Card from './components/Card';
+
 import './App.css';
 
-function App() {
+const App = () => {
+  const [allTasks, setAllTasks] = useState([]);
+
+  const addTaskHandler = enteredData => {
+    setAllTasks(prevTasks => {
+      const updatedTasks = [...prevTasks];
+      updatedTasks.unshift({text: enteredData, id: Math.random().toString()});
+      return updatedTasks;
+    });
+  }
+
+  let content;
+
+  if (allTasks.length > 0) {
+    content = (<TaskList items={allTasks}/>);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello World!
-        </p>
-      </header>
-    </div>
+    <Card>
+      {/* <h1>Todo List</h1>
+      <p>A simple React Todo List App</p> */}
+      {content}
+      <TaskInput onAddTask={addTaskHandler} />
+    </Card>
   );
 }
 
