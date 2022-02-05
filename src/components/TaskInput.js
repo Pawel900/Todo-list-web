@@ -1,9 +1,8 @@
-import React, {useState, useRef} from "react";
+import React, {useState} from "react";
 
 import styles from './TaskInput.module.css';
 
 const TaskInput = props => {
-    const enteredRef = useRef();
     const [enteredValue, setEnteredValue] = useState('');
 
     const taskHandler = (e) => {
@@ -13,15 +12,16 @@ const TaskInput = props => {
     const taskSubmitHandler = (e) => {
         e.preventDefault();
         if (enteredValue.trim().length === 0) return;
+        localStorage.setItem('1', enteredValue);
         props.onAddTask(enteredValue);
-        enteredRef.current.value = '';
+        setEnteredValue('');
 
     }
 
     return (
         <form onSubmit={taskSubmitHandler} className={styles.background_div}>
             <label className={styles.label}>New Todo</label>
-            <input type='text' placeholder="New Todo" ref={enteredRef} onChange={taskHandler} className={styles.input} />
+            <input type='text' placeholder="New Todo" value={enteredValue} onChange={taskHandler} className={styles.input} />
             <button type='submit' className={styles.button}>ADD TODO</button>
         </form>
     )

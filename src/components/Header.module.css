@@ -1,0 +1,26 @@
+.div {
+  padding-bottom: 5rem;
+}
+
+.font {
+  color: white;
+  margin: 0;
+  padding-left: 10%;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+  
+h1 {
+  padding-top: 2rem;
+  font-size: 5rem;
+}
+  
+p {
+  font-size: 2rem;
+}
+  
+hr {
+  width: 80%;
+  margin-top: 1rem;
+  color: #ff9494;
+  border-style: solid none;
+}
