@@ -9,18 +9,21 @@ import './App.css';
 
 const App = () => {
   let content;
-  let results = localStorage.getItem('1');
 
   const [allTasks, setAllTasks] = useState([]);
 
 
   useEffect(() => {
-    if(!results) return;
-    setAllTasks(prevTasks => {
-      const updatedTasks = [...prevTasks];
-      updatedTasks.unshift({text: results, id: Math.random().toString()});
-      return updatedTasks;
-    });
+    Object.keys(localStorage).sort().reverse().forEach(val => {
+      if(!val) return;
+      let result = localStorage.getItem(val);
+      setAllTasks(prevTasks => {
+        const updatedTasks = [...prevTasks];
+        updatedTasks.unshift({text: result, id: Math.random().toString()});
+        return updatedTasks;
+      });
+    })
+    
   }, [])
 
   const addTaskHandler = enteredData => {
@@ -31,10 +34,16 @@ const App = () => {
     });
   }
 
-  
+  const deleteItemHandler = goalId => {
+    setAllTasks(prevTasks => {
+      const updatedGoals = prevTasks.filter(goal => goal.id !== goalId);
+      return updatedGoals;
+    })
+  }
+
   if (allTasks.length > 0) {
     console.log(allTasks);
-    content = (<TaskList items={allTasks}/>);
+    content = (<TaskList items={allTasks} onDeleteItem={deleteItemHandler}/>);
   }
   
   // if (results.length > 0) {

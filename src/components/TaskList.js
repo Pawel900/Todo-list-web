@@ -7,7 +7,7 @@ const TaskList = props => {
     return (
         <ul className={styles.ul}>
             {props.items.map(item => (
-                <TaskListItem key={item.id}>{item.text}</TaskListItem>
+                <TaskListItem key={item.id} id={item.id} onDelete={props.onDeleteItem}>{item.text}</TaskListItem>
             ))}
         </ul>
     );

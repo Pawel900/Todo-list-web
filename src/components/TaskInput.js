@@ -11,8 +11,8 @@ const TaskInput = props => {
 
     const taskSubmitHandler = (e) => {
         e.preventDefault();
-        if (enteredValue.trim().length === 0) return;
-        localStorage.setItem('1', enteredValue);
+        if (enteredValue.trim().length === 0 || enteredValue === localStorage.getItem(enteredValue)) return;
+        localStorage.setItem(enteredValue, enteredValue);
         props.onAddTask(enteredValue);
         setEnteredValue('');
 

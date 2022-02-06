@@ -16,3 +16,19 @@
     top: 50%; 
     transform: translate(0, -50%);
 }
+
+.icon_trash, .icon_pen {
+    position: absolute;
+    font-size: 1.9rem;
+    top: 50%; 
+    transform: translate(0, -50%);
+}
+
+.icon_trash {
+    margin-left: 35rem;
+}
+
+.icon_pen {
+    margin-left: 32rem;
+}
+
