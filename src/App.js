@@ -34,22 +34,25 @@ const App = () => {
     });
   }
 
-  const deleteItemHandler = goalId => {
+  const deleteItemHandler = taskId => {
     setAllTasks(prevTasks => {
-      const updatedGoals = prevTasks.filter(goal => goal.id !== goalId);
-      return updatedGoals;
+      const deletedTasks = prevTasks.filter(task => task.id !== taskId);
+      return deletedTasks;
     })
   }
 
-  if (allTasks.length > 0) {
-    console.log(allTasks);
-    content = (<TaskList items={allTasks} onDeleteItem={deleteItemHandler}/>);
+  const editItemHandler = taskMessage => {
+    // console.log(props)
+    // setAllTasks(prevTasks => {
+    //   const modifiedTasks = prevTasks.filter(task => task.text !== taskMessage);
+    //   console.log(modifiedTasks);
+    //   return modifiedTasks;
+    // })
   }
-  
-  // if (results.length > 0) {
-  //   content = (<TaskList items={results}/>);
-  // }
 
+  if (allTasks.length > 0) {
+    content = (<TaskList items={allTasks} onDeleteItem={deleteItemHandler} onEditItem={editItemHandler} />);
+  }
 
   return (
     <Card>
