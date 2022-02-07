@@ -10,12 +10,20 @@ const TaskListItem = props => {
         localStorage.removeItem(...Object.values(localStorage).filter(val => val === props.children));
     }
 
+    const editItem = () => {
+        props.onEdit(props.text);   
+    }
+
+    const completedTask = () => {
+        document.getElementById(props.id).classList.toggle(`${styles.complete}`);
+    }
+
     return (
         <div className={styles.background}>
             <li className={styles.li}>
-                <div>{props.children}</div>  
+                <div onClick={completedTask} id={props.id} >{props.children}</div>  
                 <FaTrash className={styles.icon_trash} onClick={deleteItem}/>         
-                <FaPen className={styles.icon_pen}/>         
+                <FaPen className={styles.icon_pen} onClick={editItem}/>         
             </li>
         </div>
     )
